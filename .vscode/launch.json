@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "name": "Flutter (Pixel XL API 30)",
+            "program": "lib/main.dart",
+            "deviceId": "emulator-5554",
+            "request": "launch",
+            "type": "dart"
+        }
+    ]
+}
