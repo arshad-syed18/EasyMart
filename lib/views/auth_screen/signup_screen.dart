@@ -1,5 +1,4 @@
 import 'package:ecommerse_app/consts/consts.dart';
-import 'package:ecommerse_app/consts/lists.dart';
 import 'package:ecommerse_app/widgets_common/applogo_widget.dart';
 import 'package:ecommerse_app/widgets_common/bg_widget.dart';
 import 'package:ecommerse_app/widgets_common/custom_textfield.dart';
@@ -14,6 +13,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  bool? isCheck = true;
   @override
   Widget build(BuildContext context) {
     return bgWidget(
@@ -42,9 +42,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Row(
                     children: [
                       Checkbox(
-                        checkColor: redColor,
-                        value: false,
-                        onChanged: (newValue) {},
+                        checkColor: whiteColor,
+                        activeColor: redColor,
+                        value: isCheck,
+                        onChanged: (newValue) {
+                          setState(() {
+                            isCheck = newValue;
+                          });
+                          isCheck = newValue;
+                        },
                       ),
                       5.widthBox,
                       Expanded(
@@ -54,7 +60,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               TextSpan(
                                 text: "I agree to the ",
                                 style: TextStyle(
-                                  fontFamily: bold,
+                                  fontFamily: regular,
                                   color: fontGrey,
                                 ),
                               ),
@@ -68,7 +74,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               TextSpan(
                                 text: " and  ",
                                 style: TextStyle(
-                                  fontFamily: bold,
+                                  fontFamily: regular,
                                   color: fontGrey,
                                 ),
                               ),
@@ -87,30 +93,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   5.heightBox,
                   ourButton(
-                          color: redColor,
+                          color: isCheck == true ? redColor : lightGrey,
                           title: signup,
-                          textColor: whiteColor,
+                          textColor: isCheck == true ? whiteColor : redColor,
                           onPress: () {})
                       .box
                       .width(context.screenWidth - 50)
                       .make(),
                   10.heightBox,
-                  RichText(
-                    text: const TextSpan(
-                      children: [
-                        TextSpan(
-                          text: alreadyHaveAccount,
-                          style: TextStyle(fontFamily: bold, color: fontGrey),
-                        ),
-                        TextSpan(
-                          text: login,
-                          style: TextStyle(fontFamily: bold, color: redColor),
-                        ),
-                      ],
-                    ),
-                  ).onTap(() {
-                    Get.back();
-                  }),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      alreadyHaveAccount.text.color(fontGrey).make(),
+                      login.text.color(redColor).make().onTap(() {
+                        Get.back();
+                      }),
+                    ],
+                  ),
                   7.heightBox,
                 ],
               )

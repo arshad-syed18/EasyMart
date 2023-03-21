@@ -1,6 +1,7 @@
 import 'package:ecommerse_app/consts/consts.dart';
 import 'package:ecommerse_app/consts/lists.dart';
 import 'package:ecommerse_app/views/auth_screen/signup_screen.dart';
+import 'package:ecommerse_app/views/home_screen/home_screen.dart';
 import 'package:ecommerse_app/widgets_common/applogo_widget.dart';
 import 'package:ecommerse_app/widgets_common/bg_widget.dart';
 import 'package:ecommerse_app/widgets_common/custom_textfield.dart';
@@ -36,13 +37,13 @@ class LoginScreen extends StatelessWidget {
                   ),
                   5.heightBox,
                   ourButton(
-                          color: redColor,
-                          title: login,
-                          textColor: whiteColor,
-                          onPress: () {})
-                      .box
-                      .width(context.screenWidth - 50)
-                      .make(),
+                    color: redColor,
+                    title: login,
+                    textColor: whiteColor,
+                    onPress: () {
+                      Get.to(() => const HomeScreen());
+                    },
+                  ).box.width(context.screenWidth - 50).make(),
                   5.heightBox,
                   createNewAccount.text.color(fontGrey).make(),
                   ourButton(
