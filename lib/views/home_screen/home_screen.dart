@@ -1,51 +1,113 @@
 import 'package:ecommerse_app/consts/consts.dart';
-import 'package:ecommerse_app/controllers/home_controller.dart';
-import 'package:get/get.dart';
+import 'package:ecommerse_app/consts/lists.dart';
+import 'package:ecommerse_app/widgets_common/home_buttons.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var controller = Get.put(Homecontroller());
-    var navBarItem = [
-      BottomNavigationBarItem(
-          icon: Image.asset(icHome, width: 26), label: home),
-      BottomNavigationBarItem(
-          icon: Image.asset(icCategories, width: 26), label: categories),
-      BottomNavigationBarItem(
-          icon: Image.asset(icCart, width: 26), label: cart),
-      BottomNavigationBarItem(
-          icon: Image.asset(icProfile, width: 26), label: account),
-    ];
-    var navBody = [
-      Container(color: Colors.blue),
-      Container(color: Colors.amber),
-      Container(color: Colors.purple),
-      Container(color: Colors.cyan),
-    ];
-    return Scaffold(
-      body: Column(
-        children: [
-          Obx(
-            () => Expanded(
-              child: navBody.elementAt(controller.currentNavIndex.value),
+    return Container(
+      color: lightGrey,
+      width: context.screenWidth,
+      height: context.screenHeight,
+      padding: const EdgeInsets.all(12),
+      child: SafeArea(
+        child: Column(
+          children: [
+            Container(
+              alignment: Alignment.center,
+              height: 60,
+              color: lightGrey,
+              child: TextFormField(
+                decoration: const InputDecoration(
+                  suffixIcon: Icon(Icons.search),
+                  filled: true,
+                  fillColor: whiteColor,
+                  hintText: searchAnything,
+                  hintStyle: TextStyle(color: textfieldGrey),
+                ),
+              ),
             ),
-          ),
-        ],
-      ),
-      // obx will allow switching bottom navbar using onTap, it is used to update the UI in response to changes
-      bottomNavigationBar: Obx(
-        () => BottomNavigationBar(
-          currentIndex: controller.currentNavIndex.value,
-          selectedItemColor: redColor,
-          selectedLabelStyle: const TextStyle(fontFamily: semibold),
-          backgroundColor: whiteColor,
-          type: BottomNavigationBarType.fixed,
-          items: navBarItem,
-          onTap: (value) {
-            controller.currentNavIndex.value = value;
-          },
+            VxSwiper.builder(
+              aspectRatio: 16 / 9,
+              autoPlay: true,
+              enlargeCenterPage: true,
+              height: 150,
+              itemCount: slidersList.length,
+              itemBuilder: (context, index) {
+                return Image.asset(
+                  slidersList[index],
+                  fit: BoxFit.fill,
+                )
+                    .box
+                    .rounded
+                    .clip(Clip.antiAlias)
+                    .margin(const EdgeInsets.symmetric(horizontal: 8))
+                    .make();
+              },
+            ),
+            10.heightBox,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: List.generate(
+                2,
+                (index) => homeButtons(
+                    height: context.screenHeight * 0.1,
+                    width: context.screenWidth / 2.5,
+                    icon: index == 0 ? icTodaysDeal : icFlashDeal,
+                    title: index == 0 ? todaysDeal : flashSale),
+              ),
+            ),
+            10.heightBox,
+            VxSwiper.builder(
+              aspectRatio: 16 / 9,
+              autoPlay: true,
+              enlargeCenterPage: true,
+              height: 150,
+              itemCount: secondSlidersList.length,
+              itemBuilder: (context, index) {
+                return Image.asset(
+                  secondSlidersList[index],
+                  fit: BoxFit.fill,
+                )
+                    .box
+                    .rounded
+                    .clip(Clip.antiAlias)
+                    .margin(const EdgeInsets.symmetric(horizontal: 8))
+                    .make();
+              },
+            ),
+            10.heightBox,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: List.generate(
+                3,
+                (index) => homeButtons(
+                    height: context.screenHeight * 0.1,
+                    width: context.screenWidth / 3.5,
+                    icon: index == 0
+                        ? icTopCategories
+                        : index == 1
+                            ? icBrands
+                            : icTopSeller,
+                    title: index == 0
+                        ? topCategories
+                        : index == 1
+                            ? brand
+                            : topSeller),
+              ),
+            ),
+            20.heightBox,
+            Align(
+              alignment: Alignment.centerLeft,
+              child: featuredCategories.text
+                  .color(darkFontGrey)
+                  .size(18)
+                  .fontFamily(semibold)
+                  .make(),
+            )
+          ],
         ),
       ),
     );
