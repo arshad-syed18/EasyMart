@@ -16,7 +16,10 @@ class MyApp extends StatelessWidget {
       title: appname,
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.transparent,
-        appBarTheme: const AppBarTheme(backgroundColor: Colors.transparent),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.transparent,
+          iconTheme: IconThemeData(color: darkFontGrey),
+        ),
         fontFamily: regular,
       ),
       home: const SplashScreen(),
