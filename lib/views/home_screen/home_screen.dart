@@ -204,7 +204,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     20.heightBox,
-                    //third swiper
+                    //third swiper    --- Remove later looks ugly
                     VxSwiper.builder(
                       aspectRatio: 16 / 9,
                       autoPlay: true,
@@ -237,9 +237,36 @@ class HomeScreen extends StatelessWidget {
                               crossAxisSpacing: 8,
                               mainAxisExtent: 300),
                       itemBuilder: ((context, index) {
-                        return Container(
-                          color: redColor,
-                        );
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Image.asset(
+                              imgP5,
+                              width: 200,
+                              height: 200,
+                              fit: BoxFit.cover,
+                            ),
+                            const Spacer(),
+                            "Laptop 4GB/64Gb"
+                                .text
+                                .fontFamily(semibold)
+                                .color(darkFontGrey)
+                                .make(),
+                            10.heightBox,
+                            "\$600"
+                                .text
+                                .color(redColor)
+                                .fontFamily(bold)
+                                .size(16)
+                                .make()
+                          ],
+                        )
+                            .box
+                            .white
+                            .margin(const EdgeInsets.symmetric(horizontal: 4))
+                            .roundedSM
+                            .padding(const EdgeInsets.all(8))
+                            .make();
                       }),
                     ),
                   ],
