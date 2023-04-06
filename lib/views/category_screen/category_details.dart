@@ -12,6 +12,7 @@ class CategoryDetails extends StatelessWidget {
     return bgWidget(
       child: Scaffold(
         appBar: AppBar(
+          elevation: 0.0,
           title: title!.text.fontFamily(bold).make(),
         ),
         body: Container(
