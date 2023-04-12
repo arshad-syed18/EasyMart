@@ -54,3 +54,5 @@ const video = "Video",
     logout = "Logout",
     productsYouMayLike = "Products you may also like",
     supportPolicy = "Support Policy";
+//profile strings
+const wishlist = "My Wishlist", orders = "My Orders", messages = "Messages";

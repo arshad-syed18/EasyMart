@@ -1,4 +1,5 @@
 import 'package:ecommerse_app/consts/consts.dart';
+import 'package:ecommerse_app/consts/lists.dart';
 import 'package:ecommerse_app/views/profile_screen/details_card.dart';
 import 'package:ecommerse_app/widgets_common/bg_widget.dart';
 import 'package:flutter/material.dart';
@@ -66,7 +67,28 @@ class ProfileScreen extends StatelessWidget {
                         title: "in your orders",
                         width: context.screenWidth / 3.4),
                   ],
+                ),
+                20.heightBox,
+                // buttons section
+                ListView.separated(
+                  shrinkWrap: true,
+                  separatorBuilder: (context, index) {
+                    return const Divider(
+                      color: lightGrey,
+                    );
+                  },
+                  itemCount: profileButtonsList.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return ListTile(
+                      title: profileButtonsList[index].text.make(),
+                    );
+                  },
                 )
+                    .box
+                    .white
+                    .rounded
+                    .padding(const EdgeInsets.symmetric(horizontal: 16))
+                    .make(),
               ],
             ),
           ),
