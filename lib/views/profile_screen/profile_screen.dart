@@ -12,46 +12,49 @@ class ProfileScreen extends StatelessWidget {
     return bgWidget(
       child: Scaffold(
         body: SafeArea(
-          child: Container(
-            padding: const EdgeInsets.all(8),
-            child: Column(
-              children: [
-                // users details
-                Row(
-                  children: [
-                    Image.asset(imgProfile2, width: 70, fit: BoxFit.cover)
-                        .box
-                        .roundedFull
-                        .clip(Clip.antiAlias)
-                        .make(),
-                    10.widthBox,
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          "Dummy user".text.fontFamily(semibold).white.make(),
-                          5.heightBox,
-                          "customer@example.com".text.white.make(),
-                        ],
-                      ),
+          child: Column(
+            children: [
+              // users details
+              Row(
+                children: [
+                  Image.asset(imgProfile2, width: 70, fit: BoxFit.cover)
+                      .box
+                      .roundedFull
+                      .clip(Clip.antiAlias)
+                      .make(),
+                  10.widthBox,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        "Dummy user".text.fontFamily(semibold).white.make(),
+                        5.heightBox,
+                        "customer@example.com".text.white.make(),
+                      ],
                     ),
-                    OutlinedButton(
-                        style: OutlinedButton.styleFrom(
-                            side: const BorderSide(
-                          color: whiteColor,
-                        )),
-                        onPressed: () {},
-                        child: logout.text.fontFamily(semibold).white.make())
-                  ],
-                ),
-                5.heightBox,
-                // edit profile button
-                const Align(
+                  ),
+                  OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                          side: const BorderSide(
+                        color: whiteColor,
+                      )),
+                      onPressed: () {},
+                      child: logout.text.fontFamily(semibold).white.make())
+                ],
+              ),
+              5.heightBox,
+              // edit profile button
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: const Align(
                   alignment: Alignment.topRight,
                   child: Icon(Icons.edit, color: whiteColor),
                 ).onTap(() {}),
-                20.heightBox,
-                Row(
+              ),
+              20.heightBox,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     detailsCard(
@@ -68,29 +71,43 @@ class ProfileScreen extends StatelessWidget {
                         width: context.screenWidth / 3.4),
                   ],
                 ),
-                20.heightBox,
-                // buttons section
-                ListView.separated(
-                  shrinkWrap: true,
-                  separatorBuilder: (context, index) {
-                    return const Divider(
-                      color: lightGrey,
-                    );
-                  },
-                  itemCount: profileButtonsList.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return ListTile(
-                      title: profileButtonsList[index].text.make(),
-                    );
-                  },
-                )
-                    .box
-                    .white
-                    .rounded
-                    .padding(const EdgeInsets.symmetric(horizontal: 16))
-                    .make(),
-              ],
-            ),
+              ),
+              40.heightBox,
+              // buttons section
+              ListView.separated(
+                shrinkWrap: true,
+                separatorBuilder: (context, index) {
+                  return const Divider(
+                    color: lightGrey,
+                    thickness: 2,
+                  );
+                },
+                itemCount: profileButtonsList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return ListTile(
+                    leading: Image.asset(
+                      profileButtonsIcons[index],
+                      width: 22,
+                    ),
+                    title: profileButtonsList[index]
+                        .text
+                        .fontFamily(semibold)
+                        .color(darkFontGrey)
+                        .make(),
+                  );
+                },
+              )
+                  .box
+                  .white
+                  .rounded
+                  .margin(const EdgeInsets.all(12))
+                  .padding(const EdgeInsets.symmetric(horizontal: 16))
+                  .shadowSm
+                  .make()
+                  .box
+                  .color(redColor)
+                  .make(),
+            ],
           ),
         ),
       ),
